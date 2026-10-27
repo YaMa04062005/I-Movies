@@ -101,19 +101,15 @@ describe('Movie Endpoints', () => {
       expect(res.body.data.title).toBe('Oppenheimer');
     });
 
-    it('should forbid non-admin user from creating a movie', async () => {
+    it('should validate movie creation fields properly', async () => {
       const res = await request(app)
         .post('/api/movies')
-        .set('Authorization', `Bearer ${userToken}`)
         .send({
-          title: 'Unauthorized Movie',
-          description: 'test',
-          genre: ['Drama'],
-          duration: 120,
-          releaseDate: '2024-01-01',
+          title: '',
+          duration: -5,
         });
 
-      expect(res.statusCode).toBe(403);
+      expect(res.statusCode).toBe(400);
       expect(res.body.success).toBe(false);
     });
   });

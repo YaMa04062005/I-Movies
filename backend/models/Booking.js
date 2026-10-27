@@ -5,7 +5,22 @@ const bookingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, 'Please add a user'],
+    required: false,
+  },
+  customerName: {
+    type: String,
+    trim: true,
+    default: 'Movie Fan',
+  },
+  customerEmail: {
+    type: String,
+    trim: true,
+    default: 'guest@imovies.com',
+  },
+  customerPhone: {
+    type: String,
+    trim: true,
+    default: '',
   },
   showtime: {
     type: mongoose.Schema.Types.ObjectId,

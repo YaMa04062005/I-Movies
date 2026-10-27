@@ -11,17 +11,17 @@ import {
   FaTicketAlt,
   FaUserTie,
   FaUsers,
+  FaStar,
+  FaFire,
+  FaGlobeAmericas,
 } from 'react-icons/fa';
-
-const FALLBACK_POSTER =
-  'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80';
 
 const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [imgSrc, setImgSrc] = useState(FALLBACK_POSTER);
+  const [imgSrc, setImgSrc] = useState('');
 
   const fetchMovie = async () => {
     try {
@@ -30,7 +30,7 @@ const MovieDetail = () => {
       const res = await api.get(`/movies/${id}`);
       if (res.data && res.data.success) {
         setMovie(res.data.data);
-        setImgSrc(res.data.data.posterUrl || FALLBACK_POSTER);
+        setImgSrc(res.data.data.posterUrl);
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to load movie details');
@@ -47,71 +47,105 @@ const MovieDetail = () => {
   if (error) return <ErrorMessage message={error} onRetry={fetchMovie} />;
   if (!movie) return <ErrorMessage message="Movie not found" />;
 
+  const formatDuration = (mins) => {
+    if (!mins) return '';
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return h > 0 ? `${h}h ${m}m (${mins} mins)` : `${mins} mins`;
+  };
+
   const formattedReleaseDate = movie.releaseDate
     ? new Date(movie.releaseDate).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })
-    : 'TBA';
+    : 'In Theaters Now';
 
   return (
-    <div className="page-container">
+    <div className="page-container movie-detail-page">
       <Link to="/movies" className="back-link">
-        <FaArrowLeft /> Back to Movies
+        <FaArrowLeft /> Back to All Movies
       </Link>
 
-      <div className="movie-detail-card">
+      <div className="movie-detail-card bookmyshow-detail-card">
+        {/* Poster Column */}
         <div className="movie-detail-poster-container">
           <img
-            src={imgSrc}
+            src={imgSrc || movie.posterUrl}
             alt={movie.title}
-            onError={() => setImgSrc(FALLBACK_POSTER)}
+            onError={() => setImgSrc('/posters/interstellar.jpg')}
             className="movie-detail-poster"
           />
+
+          {/* Formats banner underneath poster */}
+          <div className="detail-formats-box">
+            <span className="formats-label">Available in:</span>
+            <div className="formats-chips">
+              {movie.formats?.map((f) => (
+                <span key={f} className="format-tag-pill">
+                  {f}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
+        {/* Content Column */}
         <div className="movie-detail-info">
-          <div className="movie-header">
-            <h1 className="movie-detail-title">{movie.title}</h1>
-            <div className="badges-row">
-              {movie.rating && (
-                <span className="badge badge-rating">{movie.rating}</span>
+          {/* Industry Category & Certificate */}
+          <div className="detail-category-row">
+            <span className={`badge-category category-${movie.category || 'hollywood'}`}>
+              {movie.category === 'bollywood' ? (
+                <>
+                  <FaFire /> Bollywood Feature
+                </>
+              ) : (
+                <>
+                  <FaGlobeAmericas /> Hollywood Feature
+                </>
               )}
-              <span
-                className={`badge badge-${
-                  movie.status === 'now_showing'
-                    ? 'success'
-                    : movie.status === 'coming_soon'
-                    ? 'warning'
-                    : 'secondary'
-                }`}
-              >
-                {movie.status === 'now_showing'
-                  ? 'Now Showing'
-                  : movie.status === 'coming_soon'
-                  ? 'Coming Soon'
-                  : 'Ended'}
+            </span>
+            {movie.rating && (
+              <span className="badge-cert-large">{movie.rating}</span>
+            )}
+          </div>
+
+          <h1 className="movie-detail-title">{movie.title}</h1>
+
+          {/* IMDb Rating Ribbon */}
+          <div className="detail-rating-banner">
+            <div className="imdb-score-box">
+              <FaStar className="star-gold" />
+              <span className="score-num">{movie.imdbRating || 8.0}</span>
+              <span className="score-den">/10</span>
+              <span className="score-votes">
+                ({movie.votesCount || '150K+'} votes on IMDb)
+              </span>
+            </div>
+
+            <div className="live-interest-box">
+              <FaFire className="flame-icon" />
+              <span>
+                <strong>{movie.liveViewers || 1800}</strong> people browsing right now
               </span>
             </div>
           </div>
 
+          {/* Quick Meta Strip */}
           <div className="meta-strip">
-            {movie.duration && (
-              <span className="meta-strip-item">
-                <FaClock /> {movie.duration} minutes
-              </span>
-            )}
             <span className="meta-strip-item">
-              <FaCalendarAlt /> {formattedReleaseDate}
+              <FaClock /> {formatDuration(movie.duration)}
             </span>
-            {movie.language && (
-              <span className="meta-strip-item">
-                <FaLanguage /> {movie.language}
-              </span>
-            )}
+            <span className="meta-strip-item">
+              <FaLanguage /> {movie.language || 'English'}
+            </span>
+            <span className="meta-strip-item">
+              <FaCalendarAlt /> Released: {formattedReleaseDate}
+            </span>
           </div>
 
+          {/* Genres */}
           {movie.genre && movie.genre.length > 0 && (
             <div className="genres-list">
               {movie.genre.map((g) => (
@@ -122,11 +156,13 @@ const MovieDetail = () => {
             </div>
           )}
 
+          {/* Synopsis */}
           <div className="movie-synopsis">
-            <h3>Synopsis</h3>
+            <h3>About the Movie</h3>
             <p>{movie.description}</p>
           </div>
 
+          {/* Cast & Crew */}
           <div className="crew-cast-details">
             {movie.director && (
               <div className="crew-row">
@@ -144,21 +180,14 @@ const MovieDetail = () => {
             )}
           </div>
 
+          {/* Prominent "Book Tickets" Call to Action */}
           <div className="movie-detail-cta">
-            {movie.status === 'now_showing' ? (
-              <Link
-                to={`/movies/${movie._id}/showtimes`}
-                className="btn-primary-large"
-              >
-                <FaTicketAlt /> Book Tickets Now
-              </Link>
-            ) : (
-              <div className="coming-soon-notice">
-                {movie.status === 'coming_soon'
-                  ? 'Tickets will become available once showtimes are scheduled.'
-                  : 'This movie has concluded its theatrical run.'}
-              </div>
-            )}
+            <Link
+              to={`/movies/${movie._id}/showtimes`}
+              className="btn-book-tickets-primary"
+            >
+              <FaTicketAlt /> Book Tickets Now
+            </Link>
           </div>
         </div>
       </div>

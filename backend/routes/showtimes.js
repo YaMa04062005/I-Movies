@@ -1,14 +1,12 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const Showtime = require('../models/Showtime');
-const auth = require('../middleware/auth');
-const authorize = require('../middleware/authorize');
 const asyncHandler = require('../middleware/asyncHandler');
 
 const router = express.Router();
 
 // @route   GET /api/showtimes
-// @desc    Get all showtimes with optional filters
+// @desc    Get all showtimes
 // @access  Public
 router.get(
   '/',
@@ -33,7 +31,7 @@ router.get(
     }
 
     const showtimes = await Showtime.find(query)
-      .populate('movie', 'title duration posterUrl rating')
+      .populate('movie', 'title duration posterUrl rating category imdbRating')
       .populate('cinema', 'name location city')
       .sort({ dateTime: 1 });
 
@@ -71,20 +69,13 @@ router.get(
 
 // @route   POST /api/showtimes
 // @desc    Create a showtime
-// @access  Private/Admin
+// @access  Public
 router.post(
   '/',
-  auth,
-  authorize('admin'),
   [
     body('movie').notEmpty().withMessage('Movie is required'),
     body('cinema').notEmpty().withMessage('Cinema is required'),
-    body('screenIndex')
-      .isNumeric()
-      .withMessage('Screen index is required'),
-    body('dateTime')
-      .isISO8601()
-      .withMessage('Valid date and time is required'),
+    body('dateTime').isISO8601().withMessage('Valid date and time is required'),
   ],
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -98,7 +89,6 @@ router.post(
 
     const showtime = await Showtime.create(req.body);
 
-    // Populate for response
     await showtime.populate('movie', 'title duration');
     await showtime.populate('cinema', 'name location');
 
@@ -111,11 +101,9 @@ router.post(
 
 // @route   PUT /api/showtimes/:id
 // @desc    Update a showtime
-// @access  Private/Admin
+// @access  Public
 router.put(
   '/:id',
-  auth,
-  authorize('admin'),
   asyncHandler(async (req, res) => {
     let showtime = await Showtime.findById(req.params.id);
 
@@ -140,11 +128,9 @@ router.put(
 
 // @route   DELETE /api/showtimes/:id
 // @desc    Delete a showtime
-// @access  Private/Admin
+// @access  Public
 router.delete(
   '/:id',
-  auth,
-  authorize('admin'),
   asyncHandler(async (req, res) => {
     const showtime = await Showtime.findById(req.params.id);
 

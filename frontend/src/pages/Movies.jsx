@@ -5,7 +5,13 @@ import MovieCard from '../components/common/MovieCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import EmptyState from '../components/common/EmptyState';
-import { FaSearch, FaFilter, FaFilm } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaFilm,
+  FaGlobeAmericas,
+  FaFire,
+  FaTimes,
+} from 'react-icons/fa';
 
 const ALL_GENRES = [
   'Action',
@@ -17,28 +23,39 @@ const ALL_GENRES = [
   'Drama',
   'History',
   'Horror',
+  'Mythology',
   'Sci-Fi',
   'Thriller',
+  'War',
 ];
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialStatus = searchParams.get('status') || '';
+  const initialCategory = searchParams.get('category') || '';
+  const initialSearch = searchParams.get('search') || '';
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [search, setSearch] = useState('');
-  const [status, setStatus] = useState(initialStatus);
+  const [search, setSearch] = useState(initialSearch);
+  const [category, setCategory] = useState(initialCategory);
   const [selectedGenre, setSelectedGenre] = useState('');
+
+  // Sync state if URL query params change
+  useEffect(() => {
+    const cat = searchParams.get('category') || '';
+    const q = searchParams.get('search') || '';
+    setCategory(cat);
+    setSearch(q);
+  }, [searchParams]);
 
   const fetchMovies = async () => {
     try {
       setLoading(true);
       setError(null);
       const params = {};
-      if (status) params.status = status;
+      if (category) params.category = category;
       if (selectedGenre) params.genre = selectedGenre;
       if (search.trim()) params.search = search.trim();
 
@@ -55,52 +72,58 @@ const Movies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, [status, selectedGenre]);
+  }, [category, selectedGenre]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     fetchMovies();
   };
 
-  const handleStatusChange = (newStatus) => {
-    setStatus(newStatus);
-    if (newStatus) {
-      setSearchParams({ status: newStatus });
-    } else {
-      setSearchParams({});
-    }
+  const handleCategoryChange = (newCat) => {
+    setCategory(newCat);
+    const newParams = {};
+    if (newCat) newParams.category = newCat;
+    if (search) newParams.search = search;
+    setSearchParams(newParams);
+  };
+
+  const clearAllFilters = () => {
+    setSearch('');
+    setCategory('');
+    setSelectedGenre('');
+    setSearchParams({});
   };
 
   return (
     <div className="page-container">
       <div className="page-header">
         <div>
-          <h1>Movies Catalogue</h1>
-          <p>Discover currently running films and upcoming releases</p>
+          <h1>Now Showing & Upcoming Releases</h1>
+          <p>Book tickets for the latest Hollywood & Bollywood blockbusters</p>
         </div>
       </div>
 
-      {/* Filters & Search Toolbar */}
+      {/* Filter & Search Toolbar */}
       <div className="movies-toolbar">
-        {/* Status Filter Tabs */}
-        <div className="status-tabs">
+        {/* Category Tabs: All / Hollywood / Bollywood */}
+        <div className="status-tabs category-tabs">
           <button
-            className={`tab-btn ${status === '' ? 'active' : ''}`}
-            onClick={() => handleStatusChange('')}
+            className={`tab-btn ${category === '' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('')}
           >
             All Movies
           </button>
           <button
-            className={`tab-btn ${status === 'now_showing' ? 'active' : ''}`}
-            onClick={() => handleStatusChange('now_showing')}
+            className={`tab-btn ${category === 'hollywood' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('hollywood')}
           >
-            Now Showing
+            <FaGlobeAmericas /> Hollywood
           </button>
           <button
-            className={`tab-btn ${status === 'coming_soon' ? 'active' : ''}`}
-            onClick={() => handleStatusChange('coming_soon')}
+            className={`tab-btn ${category === 'bollywood' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('bollywood')}
           >
-            Coming Soon
+            <FaFire /> Bollywood
           </button>
         </div>
 
@@ -123,11 +146,23 @@ const Movies = () => {
           <form onSubmit={handleSearchSubmit} className="search-form">
             <input
               type="text"
-              placeholder="Search by title..."
+              placeholder="Search title, actor, director..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="search-input"
             />
+            {search && (
+              <button
+                type="button"
+                className="clear-search-btn"
+                onClick={() => {
+                  setSearch('');
+                  fetchMovies();
+                }}
+              >
+                <FaTimes />
+              </button>
+            )}
             <button type="submit" className="search-btn" title="Search">
               <FaSearch />
             </button>
@@ -137,21 +172,16 @@ const Movies = () => {
 
       {/* Movies Grid */}
       {loading ? (
-        <LoadingSpinner message="Loading movies..." />
+        <LoadingSpinner message="Searching movie directory..." />
       ) : error ? (
         <ErrorMessage message={error} onRetry={fetchMovies} />
       ) : movies.length === 0 ? (
         <EmptyState
           icon={FaFilm}
           title="No movies found"
-          description="Try adjusting your search query, genre, or status filter."
-          actionLabel="Clear Filters"
-          onAction={() => {
-            setSearch('');
-            setStatus('');
-            setSelectedGenre('');
-            setSearchParams({});
-          }}
+          description="Try adjusting your search criteria, industry category, or genre."
+          actionLabel="Reset All Filters"
+          onAction={clearAllFilters}
         />
       ) : (
         <div className="movies-grid">

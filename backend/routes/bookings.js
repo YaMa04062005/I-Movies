@@ -3,15 +3,12 @@ const { body, validationResult } = require('express-validator');
 const Booking = require('../models/Booking');
 const Showtime = require('../models/Showtime');
 const Cinema = require('../models/Cinema');
-const auth = require('../middleware/auth');
-const authorize = require('../middleware/authorize');
 const asyncHandler = require('../middleware/asyncHandler');
 
 const router = express.Router();
 
 /**
  * Validate that seat labels are valid for the given screen layout.
- * Seat format: "A1", "B12", etc. where letter = row, number = seat in row.
  */
 const validateSeats = (seats, screen) => {
   const invalidSeats = [];
@@ -23,7 +20,7 @@ const validateSeats = (seats, screen) => {
     }
     const rowLetter = match[1];
     const seatNum = parseInt(match[2], 10);
-    const rowIndex = rowLetter.charCodeAt(0) - 'A'.charCodeAt(0) + 1; // 1-based
+    const rowIndex = rowLetter.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
 
     if (rowIndex > screen.rows || seatNum < 1 || seatNum > screen.seatsPerRow) {
       invalidSeats.push(seat);
@@ -40,14 +37,12 @@ const calculateTotalPrice = (seats, showtime, screen) => {
 
   for (const seat of seats) {
     const match = seat.match(/^([A-Z])(\d+)$/);
-    const rowIndex = match[1].charCodeAt(0) - 'A'.charCodeAt(0) + 1; // 1-based
+    const rowIndex = match[1].charCodeAt(0) - 'A'.charCodeAt(0) + 1;
 
-    // Find the seat type for this row
     let seatPrice = 0;
     if (screen && screen.seatTypes && screen.seatTypes.length > 0) {
       for (const seatType of screen.seatTypes) {
         if (seatType.rows.includes(rowIndex)) {
-          // Find matching price from showtime pricing
           const pricingEntry = showtime.pricing.find(
             (p) => p.seatType === seatType.type
           );
@@ -57,7 +52,6 @@ const calculateTotalPrice = (seats, showtime, screen) => {
       }
     }
 
-    // Fallback: use first pricing entry or 0
     if (seatPrice === 0 && showtime.pricing.length > 0) {
       seatPrice = showtime.pricing[0].price;
     }
@@ -69,21 +63,35 @@ const calculateTotalPrice = (seats, showtime, screen) => {
 };
 
 // @route   GET /api/bookings
-// @desc    Get current user's bookings
-// @access  Private
+// @desc    Get bookings (optionally filtered by email, reference, or list recent)
+// @access  Public (No auth required)
 router.get(
   '/',
-  auth,
   asyncHandler(async (req, res) => {
-    const bookings = await Booking.find({ user: req.user.id })
+    const { email, reference, ids } = req.query;
+    const query = {};
+
+    if (email) {
+      query.customerEmail = { $regex: email, $options: 'i' };
+    }
+    if (reference) {
+      query.bookingReference = reference.toUpperCase();
+    }
+    if (ids) {
+      const idArray = ids.split(',').filter(Boolean);
+      query._id = { $in: idArray };
+    }
+
+    const bookings = await Booking.find(query)
       .populate({
         path: 'showtime',
         populate: [
-          { path: 'movie', select: 'title posterUrl duration rating' },
+          { path: 'movie', select: 'title posterUrl duration rating category' },
           { path: 'cinema', select: 'name location city' },
         ],
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .limit(50);
 
     res.status(200).json({
       success: true,
@@ -94,26 +102,19 @@ router.get(
 );
 
 // @route   GET /api/bookings/admin/all
-// @desc    Get all bookings (admin)
-// @access  Private/Admin
+// @desc    Get all bookings
+// @access  Public
 router.get(
   '/admin/all',
-  auth,
-  authorize('admin'),
   asyncHandler(async (req, res) => {
-    const { status, user: userId } = req.query;
+    const { status } = req.query;
     const query = {};
 
     if (status) {
       query.status = status;
     }
 
-    if (userId) {
-      query.user = userId;
-    }
-
     const bookings = await Booking.find(query)
-      .populate('user', 'name email')
       .populate({
         path: 'showtime',
         populate: [
@@ -133,36 +134,22 @@ router.get(
 
 // @route   GET /api/bookings/:id
 // @desc    Get single booking
-// @access  Private (owner or admin)
+// @access  Public
 router.get(
   '/:id',
-  auth,
   asyncHandler(async (req, res) => {
-    const booking = await Booking.findById(req.params.id)
-      .populate('user', 'name email')
-      .populate({
-        path: 'showtime',
-        populate: [
-          { path: 'movie' },
-          { path: 'cinema' },
-        ],
-      });
+    const booking = await Booking.findById(req.params.id).populate({
+      path: 'showtime',
+      populate: [
+        { path: 'movie' },
+        { path: 'cinema' },
+      ],
+    });
 
     if (!booking) {
       return res.status(404).json({
         success: false,
         message: 'Booking not found',
-      });
-    }
-
-    // Check ownership or admin
-    if (
-      booking.user._id.toString() !== req.user.id.toString() &&
-      req.user.role !== 'admin'
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: 'Not authorized to view this booking',
       });
     }
 
@@ -174,13 +161,14 @@ router.get(
 );
 
 // @route   POST /api/bookings
-// @desc    Create a booking
-// @access  Private
+// @desc    Create a booking directly (no authentication required)
+// @access  Public
 router.post(
   '/',
-  auth,
   [
-    body('showtime').notEmpty().withMessage('Showtime is required'),
+    body('showtime')
+      .custom((val, { req }) => !!(val || req.body.showtimeId))
+      .withMessage('Showtime is required'),
     body('seats')
       .isArray({ min: 1 })
       .withMessage('At least one seat is required'),
@@ -195,9 +183,17 @@ router.post(
       });
     }
 
-    const { showtime: showtimeId, seats: requestedSeats } = req.body;
+    const showtimeId = req.body.showtime || req.body.showtimeId;
+    const rawSeats = req.body.seats || [];
+    const requestedSeats = rawSeats.map((s) =>
+      typeof s === 'string' ? s : s.seatLabel || s.label || String(s)
+    );
+    const {
+      customerName = 'Movie Fan',
+      customerEmail = 'guest@imovies.com',
+      customerPhone = '',
+    } = req.body;
 
-    // Get the showtime
     const showtime = await Showtime.findById(showtimeId);
     if (!showtime) {
       return res.status(404).json({
@@ -213,7 +209,6 @@ router.post(
       });
     }
 
-    // Get the cinema and screen
     const cinema = await Cinema.findById(showtime.cinema);
     if (!cinema) {
       return res.status(404).json({
@@ -230,7 +225,6 @@ router.post(
       });
     }
 
-    // Validate seat labels
     const invalidSeats = validateSeats(requestedSeats, screen);
     if (invalidSeats.length > 0) {
       return res.status(400).json({
@@ -239,8 +233,7 @@ router.post(
       });
     }
 
-    // Atomically try to book the seats using $addToSet
-    // Only succeeds if none of the requested seats are already booked
+    // Atomically reserve seats
     const result = await Showtime.findOneAndUpdate(
       {
         _id: showtimeId,
@@ -255,26 +248,25 @@ router.post(
     if (!result) {
       return res.status(409).json({
         success: false,
-        message: 'One or more seats are already booked',
+        message: 'One or more seats were just booked by another customer',
       });
     }
 
-    // Calculate total price
     const totalPrice = calculateTotalPrice(requestedSeats, showtime, screen);
 
-    // Create the booking
     const booking = await Booking.create({
-      user: req.user.id,
+      customerName,
+      customerEmail,
+      customerPhone,
       showtime: showtimeId,
       seats: requestedSeats,
       totalPrice,
     });
 
-    // Populate for response
     await booking.populate({
       path: 'showtime',
       populate: [
-        { path: 'movie', select: 'title posterUrl' },
+        { path: 'movie', select: 'title posterUrl duration rating' },
         { path: 'cinema', select: 'name location' },
       ],
     });
@@ -286,54 +278,41 @@ router.post(
   })
 );
 
-// @route   PATCH /api/bookings/:id/cancel
-// @desc    Cancel a booking
-// @access  Private (owner or admin)
-router.patch(
-  '/:id/cancel',
-  auth,
-  asyncHandler(async (req, res) => {
-    const booking = await Booking.findById(req.params.id);
+// @route   PATCH /api/bookings/:id/cancel & PUT /api/bookings/:id/cancel
+// @desc    Cancel a booking and release seats
+// @access  Public
+const handleCancelBooking = asyncHandler(async (req, res) => {
+  const booking = await Booking.findById(req.params.id);
 
-    if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
-    }
-
-    // Check ownership or admin
-    if (
-      booking.user.toString() !== req.user.id.toString() &&
-      req.user.role !== 'admin'
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: 'Not authorized to cancel this booking',
-      });
-    }
-
-    if (booking.status !== 'confirmed') {
-      return res.status(400).json({
-        success: false,
-        message: 'Booking is already cancelled',
-      });
-    }
-
-    // Remove seats from showtime atomically
-    await Showtime.findByIdAndUpdate(booking.showtime, {
-      $pullAll: { bookedSeats: booking.seats },
+  if (!booking) {
+    return res.status(404).json({
+      success: false,
+      message: 'Booking not found',
     });
+  }
 
-    // Update booking status
-    booking.status = 'cancelled';
-    await booking.save();
-
-    res.status(200).json({
-      success: true,
-      data: booking,
+  if (booking.status !== 'confirmed') {
+    return res.status(400).json({
+      success: false,
+      message: 'Booking is already cancelled',
     });
-  })
-);
+  }
+
+  // Release seats atomically back to showtime
+  await Showtime.findByIdAndUpdate(booking.showtime, {
+    $pullAll: { bookedSeats: booking.seats },
+  });
+
+  booking.status = 'cancelled';
+  await booking.save();
+
+  res.status(200).json({
+    success: true,
+    data: booking,
+  });
+});
+
+router.patch('/:id/cancel', handleCancelBooking);
+router.put('/:id/cancel', handleCancelBooking);
 
 module.exports = router;

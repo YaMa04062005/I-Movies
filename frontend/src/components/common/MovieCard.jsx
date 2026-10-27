@@ -1,56 +1,47 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaClock, FaTicketAlt } from 'react-icons/fa';
-
-const FALLBACK_POSTER = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&q=80';
+import { FaClock, FaTicketAlt, FaStar, FaFire } from 'react-icons/fa';
 
 const MovieCard = ({ movie }) => {
-  const [imgSrc, setImgSrc] = useState(movie.posterUrl || FALLBACK_POSTER);
+  const [imgSrc, setImgSrc] = useState(movie.posterUrl);
 
-  const handleImageError = () => {
-    if (imgSrc !== FALLBACK_POSTER) {
-      setImgSrc(FALLBACK_POSTER);
-    }
-  };
-
-  const getStatusBadgeClass = (status) => {
-    switch (status) {
-      case 'now_showing':
-        return 'badge-now-showing';
-      case 'coming_soon':
-        return 'badge-coming-soon';
-      default:
-        return 'badge-ended';
-    }
-  };
-
-  const getStatusLabel = (status) => {
-    switch (status) {
-      case 'now_showing':
-        return 'Now Showing';
-      case 'coming_soon':
-        return 'Coming Soon';
-      default:
-        return 'Ended';
-    }
+  const formatDuration = (mins) => {
+    if (!mins) return '';
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return h > 0 ? `${h}h ${m}m` : `${m}m`;
   };
 
   return (
-    <div className="movie-card">
-      <div className="movie-card-poster">
-        <img
-          src={imgSrc}
-          alt={movie.title}
-          onError={handleImageError}
-          loading="lazy"
-        />
-        <span className={`movie-status-badge ${getStatusBadgeClass(movie.status)}`}>
-          {getStatusLabel(movie.status)}
-        </span>
-        {movie.rating && (
-          <span className="movie-rating-badge">{movie.rating}</span>
-        )}
-      </div>
+    <div className="movie-card bookmyshow-card">
+      <Link to={`/movies/${movie._id}`} className="movie-card-poster-link">
+        <div className="movie-card-poster">
+          <img
+            src={imgSrc}
+            alt={movie.title}
+            onError={() => setImgSrc('/posters/interstellar.jpg')}
+            loading="lazy"
+          />
+
+          {/* Top Badges */}
+          <div className="card-top-badges">
+            <span className={`badge-category category-${movie.category || 'hollywood'}`}>
+              {movie.category === 'bollywood' ? 'Bollywood' : 'Hollywood'}
+            </span>
+            {movie.rating && (
+              <span className="badge-cert">{movie.rating}</span>
+            )}
+          </div>
+
+          {/* IMDb Rating Ribbon */}
+          <div className="imdb-rating-ribbon">
+            <FaStar className="star-icon" />
+            <span className="rating-num">{movie.imdbRating || 8.0}</span>
+            <span className="rating-scale">/10</span>
+            <span className="votes-count">({movie.votesCount || '100K+'})</span>
+          </div>
+        </div>
+      </Link>
 
       <div className="movie-card-content">
         <h3 className="movie-card-title" title={movie.title}>
@@ -58,27 +49,41 @@ const MovieCard = ({ movie }) => {
         </h3>
 
         <div className="movie-card-meta">
-          {movie.duration && (
-            <span className="meta-item">
-              <FaClock /> {movie.duration}m
+          <span className="meta-lang">{movie.language || 'English'}</span>
+          <span className="meta-dot">&bull;</span>
+          <span className="meta-duration">
+            <FaClock /> {formatDuration(movie.duration)}
+          </span>
+        </div>
+
+        {movie.genre && movie.genre.length > 0 && (
+          <div className="card-genre-tags">
+            {movie.genre.slice(0, 3).join(' / ')}
+          </div>
+        )}
+
+        {/* Live Viewing Activity */}
+        <div className="live-viewers-tag">
+          <FaFire className="fire-icon" />
+          <span>{movie.liveViewers || 1200} people viewing</span>
+        </div>
+
+        {/* Formats Pills */}
+        <div className="card-formats-row">
+          {movie.formats?.slice(0, 3).map((f) => (
+            <span key={f} className="format-chip">
+              {f}
             </span>
-          )}
-          {movie.genre && movie.genre.length > 0 && (
-            <span className="meta-genre">
-              {movie.genre.slice(0, 2).join(', ')}
-            </span>
-          )}
+          ))}
         </div>
 
         <div className="movie-card-actions">
-          <Link to={`/movies/${movie._id}`} className="btn-details">
-            Details
+          <Link
+            to={`/movies/${movie._id}/showtimes`}
+            className="btn-book-now"
+          >
+            <FaTicketAlt /> Book Tickets
           </Link>
-          {movie.status === 'now_showing' && (
-            <Link to={`/movies/${movie._id}/showtimes`} className="btn-book">
-              <FaTicketAlt /> Book
-            </Link>
-          )}
         </div>
       </div>
     </div>

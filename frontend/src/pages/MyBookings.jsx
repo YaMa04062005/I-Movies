@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
@@ -13,6 +12,8 @@ import {
   FaTimesCircle,
   FaCheckCircle,
   FaBan,
+  FaSearch,
+  FaUser,
 } from 'react-icons/fa';
 
 const MyBookings = () => {
@@ -20,12 +21,31 @@ const MyBookings = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cancellingId, setCancellingId] = useState(null);
+  const [searchRef, setSearchRef] = useState('');
 
-  const fetchBookings = async () => {
+  const fetchBookings = async (customRef = '') => {
     try {
       setLoading(true);
       setError(null);
-      const res = await api.get('/bookings');
+
+      const params = {};
+      if (customRef.trim()) {
+        params.reference = customRef.trim();
+      } else {
+        // Check saved booking IDs in localStorage
+        try {
+          const saved = JSON.parse(
+            localStorage.getItem('imovies_my_bookings') || '[]'
+          );
+          if (saved.length > 0) {
+            params.ids = saved.join(',');
+          }
+        } catch {
+          // fallback
+        }
+      }
+
+      const res = await api.get('/bookings', { params });
       if (res.data && res.data.success) {
         setBookings(res.data.data);
       }
@@ -40,9 +60,14 @@ const MyBookings = () => {
     fetchBookings();
   }, []);
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    fetchBookings(searchRef);
+  };
+
   const handleCancelBooking = async (bookingId) => {
     const confirmed = window.confirm(
-      'Are you sure you want to cancel this booking? The reserved seats will be released back to the auditorium pool.'
+      'Are you sure you want to cancel this booking? The reserved seats will be released back immediately.'
     );
     if (!confirmed) return;
 
@@ -50,8 +75,7 @@ const MyBookings = () => {
       setCancellingId(bookingId);
       const res = await api.patch(`/bookings/${bookingId}/cancel`);
       if (res.data && res.data.success) {
-        toast.success('Booking cancelled successfully');
-        // Update local state immediately to avoid stale state
+        toast.success('Booking cancelled and seats released successfully');
         setBookings((prev) =>
           prev.map((b) =>
             b._id === bookingId ? { ...b, status: 'cancelled' } : b
@@ -71,20 +95,33 @@ const MyBookings = () => {
     <div className="page-container">
       <div className="page-header">
         <div>
-          <h1>My Bookings</h1>
-          <p>View your upcoming movie tickets and booking history</p>
+          <h1>My Bookings & E-Tickets</h1>
+          <p>View your confirmed movie reservations and digital entry passes</p>
         </div>
+
+        {/* Quick Ticket Lookup */}
+        <form onSubmit={handleSearchSubmit} className="ticket-search-form">
+          <input
+            type="text"
+            placeholder="Find by Reference (e.g. IMV-XXXX)..."
+            value={searchRef}
+            onChange={(e) => setSearchRef(e.target.value)}
+          />
+          <button type="submit" className="btn-search-ref">
+            <FaSearch /> Search
+          </button>
+        </form>
       </div>
 
       {loading ? (
-        <LoadingSpinner message="Loading your tickets..." />
+        <LoadingSpinner message="Retrieving your tickets..." />
       ) : error ? (
-        <ErrorMessage message={error} onRetry={fetchBookings} />
+        <ErrorMessage message={error} onRetry={() => fetchBookings()} />
       ) : bookings.length === 0 ? (
         <EmptyState
           icon={FaTicketAlt}
           title="No bookings found"
-          description="You haven't reserved any movie tickets yet."
+          description="You haven't reserved any tickets yet, or no booking matched your search reference."
           actionLabel="Browse Movies Now"
           onAction={() => (window.location.href = '/movies')}
         />
@@ -105,13 +142,13 @@ const MyBookings = () => {
                 }`}
               >
                 <div className="booking-card-poster">
-                  {movie?.posterUrl ? (
-                    <img src={movie.posterUrl} alt={movie.title} />
-                  ) : (
-                    <div className="no-poster-placeholder">
-                      <FaTicketAlt />
-                    </div>
-                  )}
+                  <img
+                    src={movie?.posterUrl || '/posters/interstellar.jpg'}
+                    alt={movie?.title || 'Movie'}
+                    onError={(e) => {
+                      e.target.src = '/posters/interstellar.jpg';
+                    }}
+                  />
                 </div>
 
                 <div className="booking-card-main">
@@ -169,10 +206,16 @@ const MyBookings = () => {
                         </span>
                       </div>
                     )}
+                    {booking.customerName && (
+                      <div className="detail-item">
+                        <FaUser />
+                        <span>{booking.customerName}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="booking-seats-strip">
-                    <span className="seats-label">Seats:</span>
+                    <span className="seats-label">Seats Reserved:</span>
                     <div className="seats-chips-row">
                       {booking.seats?.map((seat) => (
                         <span key={seat} className="seat-badge">
@@ -184,7 +227,7 @@ const MyBookings = () => {
 
                   <div className="booking-card-footer">
                     <div className="booking-price-box">
-                      <span className="price-label">Total Amount:</span>
+                      <span className="price-label">Total Amount Paid:</span>
                       <span className="price-val">
                         ${booking.totalPrice?.toFixed(2)}
                       </span>
@@ -200,7 +243,7 @@ const MyBookings = () => {
                         <FaTimesCircle />{' '}
                         {cancellingId === booking._id
                           ? 'Cancelling...'
-                          : 'Cancel Booking'}
+                          : 'Cancel Reservation'}
                       </button>
                     )}
                   </div>

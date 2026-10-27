@@ -1,8 +1,6 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const Cinema = require('../models/Cinema');
-const auth = require('../middleware/auth');
-const authorize = require('../middleware/authorize');
 const asyncHandler = require('../middleware/asyncHandler');
 
 const router = express.Router();
@@ -47,18 +45,13 @@ router.get(
 
 // @route   POST /api/cinemas
 // @desc    Create a cinema
-// @access  Private/Admin
+// @access  Public
 router.post(
   '/',
-  auth,
-  authorize('admin'),
   [
     body('name').trim().notEmpty().withMessage('Cinema name is required'),
     body('location').notEmpty().withMessage('Location is required'),
     body('city').notEmpty().withMessage('City is required'),
-    body('screens')
-      .isArray({ min: 1 })
-      .withMessage('At least one screen is required'),
   ],
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -81,11 +74,9 @@ router.post(
 
 // @route   PUT /api/cinemas/:id
 // @desc    Update a cinema
-// @access  Private/Admin
+// @access  Public
 router.put(
   '/:id',
-  auth,
-  authorize('admin'),
   asyncHandler(async (req, res) => {
     let cinema = await Cinema.findById(req.params.id);
 
@@ -110,11 +101,9 @@ router.put(
 
 // @route   DELETE /api/cinemas/:id
 // @desc    Delete a cinema
-// @access  Private/Admin
+// @access  Public
 router.delete(
   '/:id',
-  auth,
-  authorize('admin'),
   asyncHandler(async (req, res) => {
     const cinema = await Cinema.findById(req.params.id);
 

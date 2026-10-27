@@ -11,7 +11,6 @@ import {
   FaUsers,
   FaCalendarAlt,
   FaPlus,
-  FaClock,
 } from 'react-icons/fa';
 
 const Dashboard = () => {

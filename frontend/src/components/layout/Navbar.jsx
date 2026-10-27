@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   FaFilm,
   FaTicketAlt,
-  FaUser,
-  FaSignOutAlt,
+  FaBuilding,
   FaShieldAlt,
   FaBars,
   FaTimes,
-  FaBuilding,
+  FaGlobeAmericas,
+  FaFire,
 } from 'react-icons/fa';
-import { useAuth } from '../../context/AuthContext';
-import { toast } from 'react-toastify';
 
 const Navbar = () => {
-  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    toast.info('Logged out successfully');
-    navigate('/');
-    setMobileMenuOpen(false);
-  };
-
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
@@ -50,13 +38,35 @@ const Navbar = () => {
           <div className="navbar-start">
             <NavLink
               to="/movies"
+              end
               className={({ isActive }) =>
                 `nav-link ${isActive ? 'active' : ''}`
               }
               onClick={closeMenu}
             >
-              <FaFilm /> Movies
+              <FaFilm /> All Movies
             </NavLink>
+
+            <NavLink
+              to="/movies?category=hollywood"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? 'active' : ''}`
+              }
+              onClick={closeMenu}
+            >
+              <FaGlobeAmericas /> Hollywood
+            </NavLink>
+
+            <NavLink
+              to="/movies?category=bollywood"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? 'active' : ''}`
+              }
+              onClick={closeMenu}
+            >
+              <FaFire /> Bollywood
+            </NavLink>
+
             <NavLink
               to="/cinemas"
               className={({ isActive }) =>
@@ -69,67 +79,25 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-end">
-            {isAuthenticated ? (
-              <>
-                <NavLink
-                  to="/my-bookings"
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? 'active' : ''}`
-                  }
-                  onClick={closeMenu}
-                >
-                  <FaTicketAlt /> My Bookings
-                </NavLink>
+            <NavLink
+              to="/my-bookings"
+              className={({ isActive }) =>
+                `nav-link btn-my-tickets ${isActive ? 'active' : ''}`
+              }
+              onClick={closeMenu}
+            >
+              <FaTicketAlt /> My Bookings
+            </NavLink>
 
-                {isAdmin && (
-                  <NavLink
-                    to="/admin"
-                    className={({ isActive }) =>
-                      `nav-link admin-pill ${isActive ? 'active' : ''}`
-                    }
-                    onClick={closeMenu}
-                  >
-                    <FaShieldAlt /> Admin
-                  </NavLink>
-                )}
-
-                <NavLink
-                  to="/profile"
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? 'active' : ''}`
-                  }
-                  onClick={closeMenu}
-                >
-                  <FaUser /> {user?.name?.split(' ')[0] || 'Profile'}
-                </NavLink>
-
-                <button
-                  type="button"
-                  className="btn-logout"
-                  onClick={handleLogout}
-                  title="Logout"
-                >
-                  <FaSignOutAlt /> Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="btn-nav btn-nav-login"
-                  onClick={closeMenu}
-                >
-                  Log In
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn-nav btn-nav-register"
-                  onClick={closeMenu}
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                `nav-link admin-pill ${isActive ? 'active' : ''}`
+              }
+              onClick={closeMenu}
+            >
+              <FaShieldAlt /> Admin
+            </NavLink>
           </div>
         </div>
       </div>
