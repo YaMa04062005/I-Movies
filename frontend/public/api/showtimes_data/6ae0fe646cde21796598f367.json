@@ -1,0 +1,104 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f367",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f338",
+      "title": "12th Fail",
+      "description": "Based on the real-life story of IPS Officer Manoj Kumar Sharma, 12th Fail tells the inspiring tale of a million students who attempt the world's toughest competitive exam, the UPSC, with unyielding grit and resilience.",
+      "genre": [
+        "Biography",
+        "Drama"
+      ],
+      "duration": 147,
+      "rating": "U",
+      "imdbRating": 8.8,
+      "votesCount": "190K+",
+      "category": "bollywood",
+      "formats": [
+        "2D"
+      ],
+      "releaseDate": "2023-10-27T00:00:00.000Z",
+      "posterUrl": "/posters/12th-fail.jpg",
+      "director": "Vidhu Vinod Chopra",
+      "cast": [
+        "Vikrant Massey",
+        "Medha Shankr",
+        "Anant V Joshi",
+        "Geeta Agrawal Sharma"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1750,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-30T12:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 13
+      },
+      {
+        "seatType": "premium",
+        "price": 19
+      },
+      {
+        "seatType": "vip",
+        "price": 26
+      }
+    ],
+    "bookedSeats": [
+      "B1",
+      "B2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.556Z",
+    "__v": 0
+  }
+}

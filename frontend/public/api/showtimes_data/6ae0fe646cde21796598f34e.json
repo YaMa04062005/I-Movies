@@ -1,0 +1,127 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f34e",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f332",
+      "title": "Gladiator II",
+      "description": "Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius must enter the Colosseum after his home is conquered by the tyrannical Emperors who now lead Rome with an iron fist.",
+      "genre": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
+      "duration": 148,
+      "rating": "A",
+      "imdbRating": 7.1,
+      "votesCount": "190K+",
+      "category": "hollywood",
+      "formats": [
+        "IMAX 2D",
+        "Dolby Atmos",
+        "2D"
+      ],
+      "releaseDate": "2024-11-22T00:00:00.000Z",
+      "posterUrl": "/posters/gladiator-2.jpg",
+      "director": "Ridley Scott",
+      "cast": [
+        "Paul Mescal",
+        "Pedro Pascal",
+        "Denzel Washington",
+        "Connie Nielsen"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1980,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33d",
+      "name": "Cinépolis Luxury Cinemas",
+      "location": "Nexus Mall, Koramangala",
+      "city": "Bengaluru",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — VIP Recliners",
+          "rows": 6,
+          "seatsPerRow": 10,
+          "seatTypes": [
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 30,
+              "rows": [
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — 4DX Motion",
+          "rows": 7,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 15,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 22,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-29T11:30:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A1",
+      "A2",
+      "E4"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.554Z",
+    "__v": 0
+  }
+}

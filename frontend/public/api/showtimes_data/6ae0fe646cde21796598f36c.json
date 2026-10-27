@@ -1,0 +1,108 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f36c",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f33a",
+      "title": "Dunki",
+      "description": "Four friends from a village in Punjab share a common dream to go to England. The problem is that none of them has the visa or the ticket, until a soldier promises to take them to the land of their dreams via the perilous Donkey Flight route.",
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "duration": 161,
+      "rating": "U",
+      "imdbRating": 6.7,
+      "votesCount": "135K+",
+      "category": "bollywood",
+      "formats": [
+        "2D"
+      ],
+      "releaseDate": "2023-12-21T00:00:00.000Z",
+      "posterUrl": "/posters/dunki.jpg",
+      "director": "Rajkumar Hirani",
+      "cast": [
+        "Shah Rukh Khan",
+        "Taapsee Pannu",
+        "Vicky Kaushal",
+        "Boman Irani"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1100,
+      "createdAt": "2026-10-27T19:41:24.238Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T07:15:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A3",
+      "A4",
+      "B5",
+      "B6",
+      "D1",
+      "D2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.556Z",
+    "__v": 0
+  }
+}

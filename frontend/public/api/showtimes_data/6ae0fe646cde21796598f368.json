@@ -1,0 +1,131 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f368",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f339",
+      "title": "Fighter",
+      "description": "An ambitious boy named Shamsher Pathania joins the Indian Air Force and undergoes rigorous training. Soon, he and his top aviator team face an impending aerial war that tests their courage and brotherhood.",
+      "genre": [
+        "Action",
+        "Thriller",
+        "War"
+      ],
+      "duration": 166,
+      "rating": "UA",
+      "imdbRating": 7,
+      "votesCount": "110K+",
+      "category": "bollywood",
+      "formats": [
+        "3D",
+        "IMAX 3D",
+        "4DX",
+        "2D"
+      ],
+      "releaseDate": "2024-01-25T00:00:00.000Z",
+      "posterUrl": "/posters/fighter.jpg",
+      "director": "Siddharth Anand",
+      "cast": [
+        "Hrithik Roshan",
+        "Deepika Padukone",
+        "Anil Kapoor",
+        "Karan Singh Grover"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1420,
+      "createdAt": "2026-10-27T19:41:24.238Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33d",
+      "name": "Cinépolis Luxury Cinemas",
+      "location": "Nexus Mall, Koramangala",
+      "city": "Bengaluru",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — VIP Recliners",
+          "rows": 6,
+          "seatsPerRow": 10,
+          "seatTypes": [
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 30,
+              "rows": [
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — 4DX Motion",
+          "rows": 7,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 15,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 22,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T06:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A3",
+      "A4",
+      "B5",
+      "B6",
+      "D1",
+      "D2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.556Z",
+    "__v": 0
+  }
+}

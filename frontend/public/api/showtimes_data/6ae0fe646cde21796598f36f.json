@@ -1,0 +1,123 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f36f",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f33a",
+      "title": "Dunki",
+      "description": "Four friends from a village in Punjab share a common dream to go to England. The problem is that none of them has the visa or the ticket, until a soldier promises to take them to the land of their dreams via the perilous Donkey Flight route.",
+      "genre": [
+        "Comedy",
+        "Drama"
+      ],
+      "duration": 161,
+      "rating": "U",
+      "imdbRating": 6.7,
+      "votesCount": "135K+",
+      "category": "bollywood",
+      "formats": [
+        "2D"
+      ],
+      "releaseDate": "2023-12-21T00:00:00.000Z",
+      "posterUrl": "/posters/dunki.jpg",
+      "director": "Rajkumar Hirani",
+      "cast": [
+        "Shah Rukh Khan",
+        "Taapsee Pannu",
+        "Vicky Kaushal",
+        "Boman Irani"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1100,
+      "createdAt": "2026-10-27T19:41:24.238Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33d",
+      "name": "Cinépolis Luxury Cinemas",
+      "location": "Nexus Mall, Koramangala",
+      "city": "Bengaluru",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — VIP Recliners",
+          "rows": 6,
+          "seatsPerRow": 10,
+          "seatTypes": [
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 30,
+              "rows": [
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — 4DX Motion",
+          "rows": 7,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 15,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 22,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-30T12:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 13
+      },
+      {
+        "seatType": "premium",
+        "price": 19
+      },
+      {
+        "seatType": "vip",
+        "price": 26
+      }
+    ],
+    "bookedSeats": [
+      "B1",
+      "B2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.557Z",
+    "__v": 0
+  }
+}

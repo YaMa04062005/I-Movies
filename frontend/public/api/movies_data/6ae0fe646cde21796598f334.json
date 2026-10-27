@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f334",
+    "title": "Spider-Man: Across the Spider-Verse",
+    "description": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.",
+    "genre": [
+      "Animation",
+      "Action",
+      "Adventure"
+    ],
+    "duration": 140,
+    "rating": "U",
+    "imdbRating": 8.6,
+    "votesCount": "410K+",
+    "category": "hollywood",
+    "formats": [
+      "4DX",
+      "3D",
+      "2D"
+    ],
+    "releaseDate": "2023-06-02T00:00:00.000Z",
+    "posterUrl": "/posters/spider-verse.jpg",
+    "director": "Joaquim Dos Santos, Kemp Powers",
+    "cast": [
+      "Shameik Moore",
+      "Hailee Steinfeld",
+      "Oscar Isaac",
+      "Daniel Kaluuya"
+    ],
+    "language": "English",
+    "status": "now_showing",
+    "liveViewers": 1350,
+    "createdAt": "2026-10-27T19:41:24.237Z",
+    "__v": 0
+  }
+}

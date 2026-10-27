@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f339",
+    "title": "Fighter",
+    "description": "An ambitious boy named Shamsher Pathania joins the Indian Air Force and undergoes rigorous training. Soon, he and his top aviator team face an impending aerial war that tests their courage and brotherhood.",
+    "genre": [
+      "Action",
+      "Thriller",
+      "War"
+    ],
+    "duration": 166,
+    "rating": "UA",
+    "imdbRating": 7,
+    "votesCount": "110K+",
+    "category": "bollywood",
+    "formats": [
+      "3D",
+      "IMAX 3D",
+      "4DX",
+      "2D"
+    ],
+    "releaseDate": "2024-01-25T00:00:00.000Z",
+    "posterUrl": "/posters/fighter.jpg",
+    "director": "Siddharth Anand",
+    "cast": [
+      "Hrithik Roshan",
+      "Deepika Padukone",
+      "Anil Kapoor",
+      "Karan Singh Grover"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 1420,
+    "createdAt": "2026-10-27T19:41:24.238Z",
+    "__v": 0
+  }
+}

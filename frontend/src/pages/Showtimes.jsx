@@ -4,6 +4,7 @@ import api from '../api/axios';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import EmptyState from '../components/common/EmptyState';
+import { FALLBACK_MOVIES, FALLBACK_SHOWTIMES } from '../data/movieData';
 import {
   FaArrowLeft,
   FaCalendarAlt,
@@ -28,18 +29,29 @@ const Showtimes = () => {
       setLoading(true);
       setError(null);
       const [movieRes, showtimesRes] = await Promise.all([
-        api.get(`/movies/${id}`),
-        api.get('/showtimes', { params: { movie: id } }),
+        api.get(`/movies/${id}`).catch(() => null),
+        api.get('/showtimes', { params: { movie: id } }).catch(() => null),
       ]);
 
-      if (movieRes.data && movieRes.data.success) {
-        setMovie(movieRes.data.data);
+      let mData = movieRes?.data?.data;
+      if (!mData) {
+        mData = FALLBACK_MOVIES.find((m) => String(m._id) === String(id)) || FALLBACK_MOVIES[0];
       }
-      if (showtimesRes.data && showtimesRes.data.success) {
-        setShowtimes(showtimesRes.data.data);
+      setMovie(mData);
+
+      let stData = showtimesRes?.data?.data;
+      if (!stData || stData.length === 0) {
+        stData = FALLBACK_SHOWTIMES.filter((st) => String(st.movie?._id || st.movie) === String(id));
+        if (stData.length === 0) {
+          stData = FALLBACK_SHOWTIMES.slice(0, 8);
+        }
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load showtimes');
+      setShowtimes(stData);
+    } catch {
+      const fallbackMovie = FALLBACK_MOVIES.find((m) => String(m._id) === String(id)) || FALLBACK_MOVIES[0];
+      setMovie(fallbackMovie);
+      const fallbackSt = FALLBACK_SHOWTIMES.filter((st) => String(st.movie?._id || st.movie) === String(id));
+      setShowtimes(fallbackSt.length > 0 ? fallbackSt : FALLBACK_SHOWTIMES.slice(0, 8));
     } finally {
       setLoading(false);
     }

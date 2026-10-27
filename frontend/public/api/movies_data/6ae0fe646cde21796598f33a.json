@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f33a",
+    "title": "Dunki",
+    "description": "Four friends from a village in Punjab share a common dream to go to England. The problem is that none of them has the visa or the ticket, until a soldier promises to take them to the land of their dreams via the perilous Donkey Flight route.",
+    "genre": [
+      "Comedy",
+      "Drama"
+    ],
+    "duration": 161,
+    "rating": "U",
+    "imdbRating": 6.7,
+    "votesCount": "135K+",
+    "category": "bollywood",
+    "formats": [
+      "2D"
+    ],
+    "releaseDate": "2023-12-21T00:00:00.000Z",
+    "posterUrl": "/posters/dunki.jpg",
+    "director": "Rajkumar Hirani",
+    "cast": [
+      "Shah Rukh Khan",
+      "Taapsee Pannu",
+      "Vicky Kaushal",
+      "Boman Irani"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 1100,
+    "createdAt": "2026-10-27T19:41:24.238Z",
+    "__v": 0
+  }
+}

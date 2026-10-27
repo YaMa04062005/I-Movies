@@ -1,0 +1,134 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f34a",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f331",
+      "title": "Oppenheimer",
+      "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II, exploring the moral and geopolitical consequences that reshaped modern civilization.",
+      "genre": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "duration": 180,
+      "rating": "UA",
+      "imdbRating": 8.9,
+      "votesCount": "780K+",
+      "category": "hollywood",
+      "formats": [
+        "IMAX 70mm",
+        "Dolby Atmos",
+        "2D"
+      ],
+      "releaseDate": "2023-07-21T00:00:00.000Z",
+      "posterUrl": "/posters/oppenheimer.jpg",
+      "director": "Christopher Nolan",
+      "cast": [
+        "Cillian Murphy",
+        "Emily Blunt",
+        "Matt Damon",
+        "Robert Downey Jr."
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1560,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33c",
+      "name": "PVR INOX IMAX Multiplex",
+      "location": "Phoenix Palladium, High Street",
+      "city": "Mumbai",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — IMAX Laser",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 14,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 20,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 28,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — Dolby Atmos 4K",
+          "rows": 6,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 16,
+              "rows": [
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.440Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-29T10:30:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A1",
+      "A2",
+      "E4"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.553Z",
+    "__v": 0
+  }
+}

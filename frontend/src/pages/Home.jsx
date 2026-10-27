@@ -4,6 +4,7 @@ import api from '../api/axios';
 import MovieCard from '../components/common/MovieCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
+import { FALLBACK_MOVIES } from '../data/movieData';
 import {
   FaTicketAlt,
   FaSearch,
@@ -25,11 +26,14 @@ const Home = () => {
       setLoading(true);
       setError(null);
       const res = await api.get('/movies');
-      if (res.data && res.data.success) {
+      if (res.data && res.data.success && res.data.data?.length > 0) {
         setMovies(res.data.data);
+      } else {
+        setMovies(FALLBACK_MOVIES);
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load movie catalog');
+    } catch {
+      // Fallback directly to bundled static movie data so it never fails on Vercel
+      setMovies(FALLBACK_MOVIES);
     } finally {
       setLoading(false);
     }

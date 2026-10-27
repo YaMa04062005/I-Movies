@@ -1,0 +1,139 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f340",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f32f",
+      "title": "Dune: Part Two",
+      "description": "Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he endeavors to prevent a terrible future only he can foresee.",
+      "genre": [
+        "Sci-Fi",
+        "Adventure",
+        "Drama",
+        "Action"
+      ],
+      "duration": 166,
+      "rating": "UA",
+      "imdbRating": 8.5,
+      "votesCount": "480K+",
+      "category": "hollywood",
+      "formats": [
+        "IMAX 2D",
+        "4DX",
+        "Dolby Atmos",
+        "2D"
+      ],
+      "releaseDate": "2024-03-01T00:00:00.000Z",
+      "posterUrl": "/posters/dune-2.jpg",
+      "director": "Denis Villeneuve",
+      "cast": [
+        "Timothée Chalamet",
+        "Zendaya",
+        "Rebecca Ferguson",
+        "Javier Bardem"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1840,
+      "createdAt": "2026-10-27T19:41:24.236Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33c",
+      "name": "PVR INOX IMAX Multiplex",
+      "location": "Phoenix Palladium, High Street",
+      "city": "Mumbai",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — IMAX Laser",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 14,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 20,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 28,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — Dolby Atmos 4K",
+          "rows": 6,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 16,
+              "rows": [
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.440Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T05:30:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A3",
+      "A4",
+      "B5",
+      "B6",
+      "D1",
+      "D2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.552Z",
+    "__v": 0
+  }
+}

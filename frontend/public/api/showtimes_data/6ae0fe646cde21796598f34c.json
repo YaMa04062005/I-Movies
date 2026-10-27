@@ -1,0 +1,137 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f34c",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f332",
+      "title": "Gladiator II",
+      "description": "Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius must enter the Colosseum after his home is conquered by the tyrannical Emperors who now lead Rome with an iron fist.",
+      "genre": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
+      "duration": 148,
+      "rating": "A",
+      "imdbRating": 7.1,
+      "votesCount": "190K+",
+      "category": "hollywood",
+      "formats": [
+        "IMAX 2D",
+        "Dolby Atmos",
+        "2D"
+      ],
+      "releaseDate": "2024-11-22T00:00:00.000Z",
+      "posterUrl": "/posters/gladiator-2.jpg",
+      "director": "Ridley Scott",
+      "cast": [
+        "Paul Mescal",
+        "Pedro Pascal",
+        "Denzel Washington",
+        "Connie Nielsen"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1980,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33c",
+      "name": "PVR INOX IMAX Multiplex",
+      "location": "Phoenix Palladium, High Street",
+      "city": "Mumbai",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — IMAX Laser",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 14,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 20,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 28,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — Dolby Atmos 4K",
+          "rows": 6,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 16,
+              "rows": [
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.440Z",
+      "__v": 0
+    },
+    "screenIndex": 1,
+    "dateTime": "2026-10-28T09:15:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A3",
+      "A4",
+      "B5",
+      "B6",
+      "D1",
+      "D2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.553Z",
+    "__v": 0
+  }
+}

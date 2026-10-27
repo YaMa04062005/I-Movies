@@ -1,0 +1,110 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f361",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f337",
+      "title": "Jawan",
+      "description": "A high-octane action thriller which outlines the emotional journey of a prison warden who sets out to rectify the wrongs in the society, with the help of a band of women inmates.",
+      "genre": [
+        "Action",
+        "Thriller"
+      ],
+      "duration": 169,
+      "rating": "UA",
+      "imdbRating": 7,
+      "votesCount": "210K+",
+      "category": "bollywood",
+      "formats": [
+        "IMAX 2D",
+        "4DX",
+        "2D"
+      ],
+      "releaseDate": "2023-09-07T00:00:00.000Z",
+      "posterUrl": "/posters/jawan.jpg",
+      "director": "Atlee",
+      "cast": [
+        "Shah Rukh Khan",
+        "Nayanthara",
+        "Vijay Sethupathi",
+        "Deepika Padukone"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 2890,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T16:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 14
+      },
+      {
+        "seatType": "premium",
+        "price": 20
+      },
+      {
+        "seatType": "vip",
+        "price": 28
+      }
+    ],
+    "bookedSeats": [
+      "C3",
+      "C4",
+      "C5",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.555Z",
+    "__v": 0
+  }
+}

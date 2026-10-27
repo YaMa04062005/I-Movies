@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f36a",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f339",
+      "title": "Fighter",
+      "description": "An ambitious boy named Shamsher Pathania joins the Indian Air Force and undergoes rigorous training. Soon, he and his top aviator team face an impending aerial war that tests their courage and brotherhood.",
+      "genre": [
+        "Action",
+        "Thriller",
+        "War"
+      ],
+      "duration": 166,
+      "rating": "UA",
+      "imdbRating": 7,
+      "votesCount": "110K+",
+      "category": "bollywood",
+      "formats": [
+        "3D",
+        "IMAX 3D",
+        "4DX",
+        "2D"
+      ],
+      "releaseDate": "2024-01-25T00:00:00.000Z",
+      "posterUrl": "/posters/fighter.jpg",
+      "director": "Siddharth Anand",
+      "cast": [
+        "Hrithik Roshan",
+        "Deepika Padukone",
+        "Anil Kapoor",
+        "Karan Singh Grover"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1420,
+      "createdAt": "2026-10-27T19:41:24.238Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-29T08:30:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A1",
+      "A2",
+      "E4"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.556Z",
+    "__v": 0
+  }
+}

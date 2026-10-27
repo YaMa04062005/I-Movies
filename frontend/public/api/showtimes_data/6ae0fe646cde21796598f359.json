@@ -1,0 +1,136 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f359",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f335",
+      "title": "Stree 2: Sarkate Ka Aatank",
+      "description": "After the events of Stree, the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a headless entity known as Sarkata. The town turns to Vicky and the gang along with the mysterious woman to save them once again.",
+      "genre": [
+        "Comedy",
+        "Horror"
+      ],
+      "duration": 147,
+      "rating": "UA",
+      "imdbRating": 7.6,
+      "votesCount": "150K+",
+      "category": "bollywood",
+      "formats": [
+        "2D",
+        "4DX",
+        "Dolby Atmos"
+      ],
+      "releaseDate": "2024-08-15T00:00:00.000Z",
+      "posterUrl": "/posters/stree-2.jpg",
+      "director": "Amar Kaushik",
+      "cast": [
+        "Shraddha Kapoor",
+        "Rajkummar Rao",
+        "Pankaj Tripathi",
+        "Abhishek Banerjee"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 4200,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33c",
+      "name": "PVR INOX IMAX Multiplex",
+      "location": "Phoenix Palladium, High Street",
+      "city": "Mumbai",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — IMAX Laser",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 14,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 20,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 28,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — Dolby Atmos 4K",
+          "rows": 6,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 16,
+              "rows": [
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.440Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T14:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 14
+      },
+      {
+        "seatType": "premium",
+        "price": 20
+      },
+      {
+        "seatType": "vip",
+        "price": 28
+      }
+    ],
+    "bookedSeats": [
+      "C3",
+      "C4",
+      "C5",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.555Z",
+    "__v": 0
+  }
+}

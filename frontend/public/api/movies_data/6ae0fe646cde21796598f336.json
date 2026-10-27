@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f336",
+    "title": "Kalki 2898 AD",
+    "description": "A modern-day avatar of Vishnu, a Hindu god, who is believed to have descended to earth in the post-apocalyptic city of Kasi in the year 2898 AD to protect the world from evil forces.",
+    "genre": [
+      "Action",
+      "Sci-Fi",
+      "Mythology"
+    ],
+    "duration": 181,
+    "rating": "UA",
+    "imdbRating": 7.6,
+    "votesCount": "230K+",
+    "category": "bollywood",
+    "formats": [
+      "3D",
+      "IMAX 3D",
+      "Dolby Atmos",
+      "2D"
+    ],
+    "releaseDate": "2024-06-27T00:00:00.000Z",
+    "posterUrl": "/posters/kalki-2898-ad.jpg",
+    "director": "Nag Ashwin",
+    "cast": [
+      "Prabhas",
+      "Amitabh Bachchan",
+      "Kamal Haasan",
+      "Deepika Padukone"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 3100,
+    "createdAt": "2026-10-27T19:41:24.237Z",
+    "__v": 0
+  }
+}

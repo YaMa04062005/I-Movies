@@ -1,0 +1,111 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f349",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f331",
+      "title": "Oppenheimer",
+      "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb during World War II, exploring the moral and geopolitical consequences that reshaped modern civilization.",
+      "genre": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "duration": 180,
+      "rating": "UA",
+      "imdbRating": 8.9,
+      "votesCount": "780K+",
+      "category": "hollywood",
+      "formats": [
+        "IMAX 70mm",
+        "Dolby Atmos",
+        "2D"
+      ],
+      "releaseDate": "2023-07-21T00:00:00.000Z",
+      "posterUrl": "/posters/oppenheimer.jpg",
+      "director": "Christopher Nolan",
+      "cast": [
+        "Cillian Murphy",
+        "Emily Blunt",
+        "Matt Damon",
+        "Robert Downey Jr."
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1560,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T16:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 14
+      },
+      {
+        "seatType": "premium",
+        "price": 20
+      },
+      {
+        "seatType": "vip",
+        "price": 28
+      }
+    ],
+    "bookedSeats": [
+      "C3",
+      "C4",
+      "C5",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.553Z",
+    "__v": 0
+  }
+}

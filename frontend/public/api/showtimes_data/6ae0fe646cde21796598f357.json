@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f357",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f334",
+      "title": "Spider-Man: Across the Spider-Verse",
+      "description": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.",
+      "genre": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "duration": 140,
+      "rating": "U",
+      "imdbRating": 8.6,
+      "votesCount": "410K+",
+      "category": "hollywood",
+      "formats": [
+        "4DX",
+        "3D",
+        "2D"
+      ],
+      "releaseDate": "2023-06-02T00:00:00.000Z",
+      "posterUrl": "/posters/spider-verse.jpg",
+      "director": "Joaquim Dos Santos, Kemp Powers",
+      "cast": [
+        "Shameik Moore",
+        "Hailee Steinfeld",
+        "Oscar Isaac",
+        "Daniel Kaluuya"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1350,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33d",
+      "name": "Cinépolis Luxury Cinemas",
+      "location": "Nexus Mall, Koramangala",
+      "city": "Bengaluru",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — VIP Recliners",
+          "rows": 6,
+          "seatsPerRow": 10,
+          "seatTypes": [
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 30,
+              "rows": [
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — 4DX Motion",
+          "rows": 7,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 15,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 22,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-30T12:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 13
+      },
+      {
+        "seatType": "premium",
+        "price": 19
+      },
+      {
+        "seatType": "vip",
+        "price": 26
+      }
+    ],
+    "bookedSeats": [
+      "B1",
+      "B2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.555Z",
+    "__v": 0
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f365",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f338",
+      "title": "12th Fail",
+      "description": "Based on the real-life story of IPS Officer Manoj Kumar Sharma, 12th Fail tells the inspiring tale of a million students who attempt the world's toughest competitive exam, the UPSC, with unyielding grit and resilience.",
+      "genre": [
+        "Biography",
+        "Drama"
+      ],
+      "duration": 147,
+      "rating": "U",
+      "imdbRating": 8.8,
+      "votesCount": "190K+",
+      "category": "bollywood",
+      "formats": [
+        "2D"
+      ],
+      "releaseDate": "2023-10-27T00:00:00.000Z",
+      "posterUrl": "/posters/12th-fail.jpg",
+      "director": "Vidhu Vinod Chopra",
+      "cast": [
+        "Vikrant Massey",
+        "Medha Shankr",
+        "Anant V Joshi",
+        "Geeta Agrawal Sharma"
+      ],
+      "language": "Hindi",
+      "status": "now_showing",
+      "liveViewers": 1750,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33c",
+      "name": "PVR INOX IMAX Multiplex",
+      "location": "Phoenix Palladium, High Street",
+      "city": "Mumbai",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — IMAX Laser",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 14,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 20,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 28,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — Dolby Atmos 4K",
+          "rows": 6,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 16,
+              "rows": [
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.440Z",
+      "__v": 0
+    },
+    "screenIndex": 1,
+    "dateTime": "2026-10-28T14:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 14
+      },
+      {
+        "seatType": "premium",
+        "price": 20
+      },
+      {
+        "seatType": "vip",
+        "price": 28
+      }
+    ],
+    "bookedSeats": [
+      "C3",
+      "C4",
+      "C5",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.556Z",
+    "__v": 0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f335",
+    "title": "Stree 2: Sarkate Ka Aatank",
+    "description": "After the events of Stree, the town of Chanderi is being haunted again. This time, women are mysteriously abducted by a headless entity known as Sarkata. The town turns to Vicky and the gang along with the mysterious woman to save them once again.",
+    "genre": [
+      "Comedy",
+      "Horror"
+    ],
+    "duration": 147,
+    "rating": "UA",
+    "imdbRating": 7.6,
+    "votesCount": "150K+",
+    "category": "bollywood",
+    "formats": [
+      "2D",
+      "4DX",
+      "Dolby Atmos"
+    ],
+    "releaseDate": "2024-08-15T00:00:00.000Z",
+    "posterUrl": "/posters/stree-2.jpg",
+    "director": "Amar Kaushik",
+    "cast": [
+      "Shraddha Kapoor",
+      "Rajkummar Rao",
+      "Pankaj Tripathi",
+      "Abhishek Banerjee"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 4200,
+    "createdAt": "2026-10-27T19:41:24.237Z",
+    "__v": 0
+  }
+}

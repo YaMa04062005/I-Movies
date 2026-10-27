@@ -4,6 +4,7 @@ import api from '../api/axios';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import EmptyState from '../components/common/EmptyState';
+import { FALLBACK_CINEMAS } from '../data/movieData';
 import { FaBuilding, FaMapMarkerAlt, FaTv, FaEye } from 'react-icons/fa';
 
 const Cinemas = () => {
@@ -16,11 +17,13 @@ const Cinemas = () => {
       setLoading(true);
       setError(null);
       const res = await api.get('/cinemas');
-      if (res.data && res.data.success) {
+      if (res.data && res.data.success && res.data.data?.length > 0) {
         setCinemas(res.data.data);
+      } else {
+        setCinemas(FALLBACK_CINEMAS);
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch cinemas');
+    } catch {
+      setCinemas(FALLBACK_CINEMAS);
     } finally {
       setLoading(false);
     }

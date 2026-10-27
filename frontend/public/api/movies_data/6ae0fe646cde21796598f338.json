@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f338",
+    "title": "12th Fail",
+    "description": "Based on the real-life story of IPS Officer Manoj Kumar Sharma, 12th Fail tells the inspiring tale of a million students who attempt the world's toughest competitive exam, the UPSC, with unyielding grit and resilience.",
+    "genre": [
+      "Biography",
+      "Drama"
+    ],
+    "duration": 147,
+    "rating": "U",
+    "imdbRating": 8.8,
+    "votesCount": "190K+",
+    "category": "bollywood",
+    "formats": [
+      "2D"
+    ],
+    "releaseDate": "2023-10-27T00:00:00.000Z",
+    "posterUrl": "/posters/12th-fail.jpg",
+    "director": "Vidhu Vinod Chopra",
+    "cast": [
+      "Vikrant Massey",
+      "Medha Shankr",
+      "Anant V Joshi",
+      "Geeta Agrawal Sharma"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 1750,
+    "createdAt": "2026-10-27T19:41:24.237Z",
+    "__v": 0
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f337",
+    "title": "Jawan",
+    "description": "A high-octane action thriller which outlines the emotional journey of a prison warden who sets out to rectify the wrongs in the society, with the help of a band of women inmates.",
+    "genre": [
+      "Action",
+      "Thriller"
+    ],
+    "duration": 169,
+    "rating": "UA",
+    "imdbRating": 7,
+    "votesCount": "210K+",
+    "category": "bollywood",
+    "formats": [
+      "IMAX 2D",
+      "4DX",
+      "2D"
+    ],
+    "releaseDate": "2023-09-07T00:00:00.000Z",
+    "posterUrl": "/posters/jawan.jpg",
+    "director": "Atlee",
+    "cast": [
+      "Shah Rukh Khan",
+      "Nayanthara",
+      "Vijay Sethupathi",
+      "Deepika Padukone"
+    ],
+    "language": "Hindi",
+    "status": "now_showing",
+    "liveViewers": 2890,
+    "createdAt": "2026-10-27T19:41:24.237Z",
+    "__v": 0
+  }
+}

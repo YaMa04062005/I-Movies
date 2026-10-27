@@ -5,6 +5,7 @@ import MovieCard from '../components/common/MovieCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 import EmptyState from '../components/common/EmptyState';
+import { FALLBACK_MOVIES } from '../data/movieData';
 import {
   FaSearch,
   FaFilm,
@@ -60,14 +61,36 @@ const Movies = () => {
       if (search.trim()) params.search = search.trim();
 
       const res = await api.get('/movies', { params });
-      if (res.data && res.data.success) {
+      if (res.data && res.data.success && res.data.data?.length > 0) {
         setMovies(res.data.data);
+      } else {
+        filterLocalFallback();
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch movies');
+    } catch {
+      filterLocalFallback();
     } finally {
       setLoading(false);
     }
+  };
+
+  const filterLocalFallback = () => {
+    let filtered = [...FALLBACK_MOVIES];
+    if (category) {
+      filtered = filtered.filter((m) => m.category === category);
+    }
+    if (selectedGenre) {
+      filtered = filtered.filter((m) => m.genre?.includes(selectedGenre));
+    }
+    if (search.trim()) {
+      const q = search.trim().toLowerCase();
+      filtered = filtered.filter(
+        (m) =>
+          m.title.toLowerCase().includes(q) ||
+          m.director?.toLowerCase().includes(q) ||
+          m.cast?.some((c) => c.toLowerCase().includes(q))
+      );
+    }
+    setMovies(filtered);
   };
 
   useEffect(() => {

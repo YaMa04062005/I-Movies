@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../api/axios';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
+import { FALLBACK_MOVIES } from '../data/movieData';
 import {
   FaArrowLeft,
   FaClock,
@@ -28,14 +29,24 @@ const MovieDetail = () => {
       setLoading(true);
       setError(null);
       const res = await api.get(`/movies/${id}`);
-      if (res.data && res.data.success) {
+      if (res.data && res.data.success && res.data.data) {
         setMovie(res.data.data);
         setImgSrc(res.data.data.posterUrl);
+      } else {
+        findLocalFallback();
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load movie details');
+    } catch {
+      findLocalFallback();
     } finally {
       setLoading(false);
+    }
+  };
+
+  const findLocalFallback = () => {
+    const found = FALLBACK_MOVIES.find((m) => String(m._id) === String(id)) || FALLBACK_MOVIES[0];
+    if (found) {
+      setMovie(found);
+      setImgSrc(found.posterUrl);
     }
   };
 

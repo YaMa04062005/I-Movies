@@ -8,7 +8,11 @@ const connectDB = async () => {
     return mongoose.connection;
   }
 
-  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/imovies';
+  const ATLAS_DEFAULT =
+    'mongodb+srv://en24cs3011180_db_user:n62y7UVCzXr0tpEF@imovies.m2frwb5.mongodb.net/imovies?retryWrites=true&w=majority';
+  const uri =
+    process.env.MONGODB_URI ||
+    (process.env.VERCEL ? ATLAS_DEFAULT : 'mongodb://localhost:27017/imovies');
 
   try {
     const conn = await mongoose.connect(uri, {

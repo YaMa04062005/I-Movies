@@ -1,0 +1,131 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f345",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f330",
+      "title": "Deadpool & Wolverine",
+      "description": "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary Deadpool behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit up with an even more reluctant Wolverine.",
+      "genre": [
+        "Action",
+        "Comedy",
+        "Sci-Fi"
+      ],
+      "duration": 128,
+      "rating": "A",
+      "imdbRating": 7.7,
+      "votesCount": "390K+",
+      "category": "hollywood",
+      "formats": [
+        "3D",
+        "IMAX 3D",
+        "4DX",
+        "2D"
+      ],
+      "releaseDate": "2024-07-26T00:00:00.000Z",
+      "posterUrl": "/posters/deadpool-wolverine.jpg",
+      "director": "Shawn Levy",
+      "cast": [
+        "Ryan Reynolds",
+        "Hugh Jackman",
+        "Emma Corrin",
+        "Morena Baccarin"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 2450,
+      "createdAt": "2026-10-27T19:41:24.236Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33d",
+      "name": "Cinépolis Luxury Cinemas",
+      "location": "Nexus Mall, Koramangala",
+      "city": "Bengaluru",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — VIP Recliners",
+          "rows": 6,
+          "seatsPerRow": 10,
+          "seatTypes": [
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 30,
+              "rows": [
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "screenNumber": 2,
+          "name": "Screen 2 — 4DX Motion",
+          "rows": 7,
+          "seatsPerRow": 12,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 15,
+              "rows": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 22,
+              "rows": [
+                5,
+                6,
+                7
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 1,
+    "dateTime": "2026-10-28T15:00:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 14
+      },
+      {
+        "seatType": "premium",
+        "price": 20
+      },
+      {
+        "seatType": "vip",
+        "price": 28
+      }
+    ],
+    "bookedSeats": [
+      "C3",
+      "C4",
+      "C5",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.552Z",
+    "__v": 0
+  }
+}

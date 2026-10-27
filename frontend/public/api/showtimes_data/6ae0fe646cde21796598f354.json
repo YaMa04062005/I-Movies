@@ -1,0 +1,111 @@
+{
+  "success": true,
+  "data": {
+    "_id": "6ae0fe646cde21796598f354",
+    "movie": {
+      "_id": "6ae0fe646cde21796598f334",
+      "title": "Spider-Man: Across the Spider-Verse",
+      "description": "Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.",
+      "genre": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "duration": 140,
+      "rating": "U",
+      "imdbRating": 8.6,
+      "votesCount": "410K+",
+      "category": "hollywood",
+      "formats": [
+        "4DX",
+        "3D",
+        "2D"
+      ],
+      "releaseDate": "2023-06-02T00:00:00.000Z",
+      "posterUrl": "/posters/spider-verse.jpg",
+      "director": "Joaquim Dos Santos, Kemp Powers",
+      "cast": [
+        "Shameik Moore",
+        "Hailee Steinfeld",
+        "Oscar Isaac",
+        "Daniel Kaluuya"
+      ],
+      "language": "English",
+      "status": "now_showing",
+      "liveViewers": 1350,
+      "createdAt": "2026-10-27T19:41:24.237Z",
+      "__v": 0
+    },
+    "cinema": {
+      "_id": "6ae0fe646cde21796598f33e",
+      "name": "Miraj Maximum Multiplex",
+      "location": "DLF Cyber City, Sector 24",
+      "city": "Delhi NCR",
+      "screens": [
+        {
+          "screenNumber": 1,
+          "name": "Screen 1 — BigPix Dolby Atmos",
+          "rows": 8,
+          "seatsPerRow": 14,
+          "seatTypes": [
+            {
+              "type": "standard",
+              "price": 12,
+              "rows": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "type": "premium",
+              "price": 18,
+              "rows": [
+                6,
+                7
+              ]
+            },
+            {
+              "type": "vip",
+              "price": 25,
+              "rows": [
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-27T19:41:24.441Z",
+      "__v": 0
+    },
+    "screenIndex": 0,
+    "dateTime": "2026-10-28T10:45:00.000Z",
+    "pricing": [
+      {
+        "seatType": "standard",
+        "price": 12
+      },
+      {
+        "seatType": "premium",
+        "price": 18
+      },
+      {
+        "seatType": "vip",
+        "price": 25
+      }
+    ],
+    "bookedSeats": [
+      "A3",
+      "A4",
+      "B5",
+      "B6",
+      "D1",
+      "D2"
+    ],
+    "status": "scheduled",
+    "createdAt": "2026-10-27T19:41:24.554Z",
+    "__v": 0
+  }
+}
