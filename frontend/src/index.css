@@ -24,6 +24,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Base Button Styling (Prevents any plain white default browser buttons) */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
 /* Spinner Animation */
 @keyframes spin {
   to {

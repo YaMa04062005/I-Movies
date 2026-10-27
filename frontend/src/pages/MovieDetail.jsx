@@ -56,10 +56,10 @@ const MovieDetail = () => {
 
   const formattedReleaseDate = movie.releaseDate
     ? new Date(movie.releaseDate).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
     : 'In Theaters Now';
 
   return (

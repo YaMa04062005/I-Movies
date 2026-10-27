@@ -10,6 +10,9 @@ import {
   FaClock,
   FaBuilding,
   FaTicketAlt,
+  FaStar,
+  FaTv,
+  FaMapMarkerAlt,
 } from 'react-icons/fa';
 
 const Showtimes = () => {
@@ -46,7 +49,7 @@ const Showtimes = () => {
     fetchData();
   }, [id]);
 
-  if (loading) return <LoadingSpinner message="Loading showtimes..." />;
+  if (loading) return <LoadingSpinner message="Finding theaters & showtimes..." />;
   if (error) return <ErrorMessage message={error} onRetry={fetchData} />;
   if (!movie) return <ErrorMessage message="Movie not found" />;
 
@@ -75,43 +78,100 @@ const Showtimes = () => {
     return acc;
   }, {});
 
-  return (
-    <div className="page-container">
-      <Link to={`/movies/${id}`} className="back-link">
-        <FaArrowLeft /> Back to Movie Details
-      </Link>
+  const formatRuntime = (mins) => {
+    if (!mins) return '';
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return `${h}h ${m}m (${mins} mins)`;
+  };
 
+  return (
+    <div className="page-container showtimes-page-wrapper">
+      <div className="showtimes-navigation">
+        <Link to={`/movies/${id}`} className="bms-back-btn">
+          <FaArrowLeft /> Back to Movie Overview
+        </Link>
+      </div>
+
+      {/* Header Banner */}
       <div className="showtimes-movie-banner">
-        <h2>{movie.title}</h2>
-        <div className="showtimes-meta">
-          <span>{movie.duration}m</span>
-          <span>{movie.rating}</span>
-          <span>{movie.genre?.join(', ')}</span>
+        <div className="banner-poster-wrap">
+          <img
+            src={movie.posterUrl || '/posters/interstellar.jpg'}
+            alt={movie.title}
+            className="banner-poster-thumb"
+          />
+        </div>
+        <div className="banner-info-wrap">
+          <div className="banner-top-badges">
+            <span className="bms-cert-pill">{movie.rating || 'UA'}</span>
+            <span className="bms-category-pill">
+              {movie.category === 'bollywood' ? 'Bollywood' : 'Hollywood'}
+            </span>
+            {movie.imdbRating && (
+              <span className="bms-imdb-pill">
+                <FaStar /> {movie.imdbRating.toFixed(1)}/10
+              </span>
+            )}
+          </div>
+          <h1 className="banner-movie-title">{movie.title}</h1>
+          <div className="banner-meta-row">
+            <span className="banner-meta-item">
+              <FaClock /> {formatRuntime(movie.duration)}
+            </span>
+            <span className="banner-dot">&bull;</span>
+            <span className="banner-meta-item">
+              {movie.genre?.join(', ')}
+            </span>
+            <span className="banner-dot">&bull;</span>
+            <span className="banner-meta-item">{movie.language || 'English'}</span>
+          </div>
+          {movie.formats && movie.formats.length > 0 && (
+            <div className="banner-formats-list">
+              {movie.formats.map((fmt) => (
+                <span key={fmt} className="banner-fmt-chip">
+                  {fmt}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       {/* Date Filter Tabs */}
-      <div className="date-filter-tabs">
-        <button
-          className={`date-tab ${selectedDate === 'all' ? 'active' : ''}`}
-          onClick={() => setSelectedDate('all')}
-        >
-          All Dates ({showtimes.length})
-        </button>
-        {availableDates.map((dStr) => {
-          const d = new Date(dStr);
-          const isToday = new Date().toDateString() === dStr;
-          return (
-            <button
-              key={dStr}
-              className={`date-tab ${selectedDate === dStr ? 'active' : ''}`}
-              onClick={() => setSelectedDate(dStr)}
-            >
-              <FaCalendarAlt />{' '}
-              {isToday ? 'Today' : d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' })}
-            </button>
-          );
-        })}
+      <div className="date-filter-section">
+        <div className="date-filter-label">
+          <FaCalendarAlt /> Select Screening Date:
+        </div>
+        <div className="date-filter-tabs">
+          <button
+            className={`date-tab ${selectedDate === 'all' ? 'active' : ''}`}
+            onClick={() => setSelectedDate('all')}
+          >
+            <span className="tab-day">ALL</span>
+            <span className="tab-date">{showtimes.length}</span>
+            <span className="tab-month">Shows</span>
+          </button>
+          {availableDates.map((dStr) => {
+            const d = new Date(dStr);
+            const isToday = new Date().toDateString() === dStr;
+            const dayName = isToday ? 'TODAY' : d.toLocaleDateString([], { weekday: 'short' }).toUpperCase();
+            const dateNum = d.getDate();
+            const monthName = d.toLocaleDateString([], { month: 'short' }).toUpperCase();
+
+            return (
+              <button
+                key={dStr}
+                className={`date-tab ${selectedDate === dStr ? 'active' : ''}`}
+                onClick={() => setSelectedDate(dStr)}
+              >
+                <span className="tab-day">{dayName}</span>
+                <span className="tab-date">{dateNum}</span>
+                <span className="tab-month">{monthName}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Showtimes by Cinema */}
@@ -128,13 +188,18 @@ const Showtimes = () => {
           {Object.values(groupedByCinema).map(({ cinema, showtimes: cShowtimes }) => (
             <div key={cinema?._id || Math.random()} className="cinema-showtime-block">
               <div className="cinema-block-header">
-                <div>
+                <div className="cinema-name-col">
                   <h3>
-                    <FaBuilding /> {cinema?.name || 'Cinema Multiplex'}
+                    <FaBuilding className="cinema-icon" /> {cinema?.name || 'Cinema Multiplex'}
                   </h3>
                   <p className="cinema-location-text">
-                    {cinema?.location}, {cinema?.city}
+                    <FaMapMarkerAlt /> {cinema?.location}, {cinema?.city}
                   </p>
+                </div>
+                <div className="cinema-amenities-col">
+                  <span className="amenity-chip">M-Ticket</span>
+                  <span className="amenity-chip">Food & Beverages</span>
+                  <span className="amenity-chip">Dolby Atmos</span>
                 </div>
               </div>
 
@@ -143,44 +208,31 @@ const Showtimes = () => {
                   const dt = new Date(st.dateTime);
                   const minPrice = st.pricing?.length
                     ? Math.min(...st.pricing.map((p) => p.price))
-                    : 10;
-                  const bookedCount = st.bookedSeats?.length || 0;
+                    : 12;
 
                   return (
-                    <div key={st._id} className="showtime-pill-card">
-                      <div className="pill-header">
+                    <Link
+                      key={st._id}
+                      to={`/booking/${st._id}`}
+                      className="showtime-pill-card"
+                    >
+                      <div className="pill-time-wrap">
                         <span className="pill-time">
-                          <FaClock />{' '}
                           {dt.toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit',
                           })}
                         </span>
-                        <span className="pill-screen">
-                          Screen {st.screenIndex + 1}
-                        </span>
+                        <span className="pill-format">Screen {st.screenIndex + 1}</span>
                       </div>
 
-                      <div className="pill-meta">
-                        <span className="pill-date">
-                          {dt.toLocaleDateString([], {
-                            weekday: 'short',
-                            month: 'short',
-                            day: 'numeric',
-                          })}
+                      <div className="pill-bottom-info">
+                        <span className="pill-price">${minPrice}</span>
+                        <span className="pill-btn-label">
+                          <FaTicketAlt /> Select
                         </span>
-                        <span className="pill-price">From ${minPrice}</span>
                       </div>
-
-                      <div className="pill-action">
-                        <Link
-                          to={`/booking/${st._id}`}
-                          className="btn-book-pill"
-                        >
-                          <FaTicketAlt /> Select Seats
-                        </Link>
-                      </div>
-                    </div>
+                    </Link>
                   );
                 })}
               </div>
