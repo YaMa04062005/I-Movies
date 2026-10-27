@@ -4,7 +4,7 @@
   "description": "IMovies Cinema Booking & Theater Management Platform",
   "private": true,
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install && npm run build && node -e \"const fs=require('fs'); fs.cpSync('dist', '../dist', {recursive: true});\"",
     "start": "node backend/server.js",
     "seed": "cd backend && npm run seed",
     "test": "cd backend && npm test",
