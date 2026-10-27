@@ -16,13 +16,31 @@ const connectDB = async () => {
       maxPoolSize: 10,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+
+    // Auto-seed if database is empty (works on both local and Vercel with Atlas)
+    if (!process.env.SEED_SCRIPT) {
+      try {
+        const Movie = require('../models/Movie');
+        const movieCount = await Movie.countDocuments();
+        if (movieCount === 0) {
+          console.log('Database is empty. Automatically seeding sample data...');
+          const seedFunction = require('../seedHelper');
+          await seedFunction();
+        }
+      } catch (seedErr) {
+        console.warn('Auto-seed check failed (non-fatal):', seedErr.message);
+      }
+    }
+
     return conn;
   } catch (error) {
     console.warn(`Could not connect to external MongoDB at ${uri} (${error.message}).`);
 
-    // In production or on Vercel serverless functions, throw error rather than trying memory server
+    // On Vercel serverless or production, do NOT try MongoMemoryServer (binary too large for serverless)
     if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
-      throw error;
+      throw new Error(
+        'MongoDB connection failed. Set MONGODB_URI in Vercel Environment Variables to a MongoDB Atlas URI.'
+      );
     }
 
     // In local development or test, fallback to embedded MongoMemoryServer

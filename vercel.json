@@ -2,6 +2,12 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "installCommand": "npm install && cd backend && npm install --production && cd ../frontend && npm install",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "backend/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -13,4 +19,3 @@
     }
   ]
 }
-
