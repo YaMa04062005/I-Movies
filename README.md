@@ -360,3 +360,53 @@ Tests:       23 passed, 23 total
 Snapshots:   0 total
 Time:        13.393 s
 ```
+
+
+---
+
+## Vercel Deployment Guide
+
+The repository is pre-configured for full-stack deployment on Vercel as a unified application:
+- **Frontend**: Vite Single Page App built to `frontend/dist` with SPA routing rewrites.
+- **Backend API**: Express application wrapped as a Vercel Serverless Function via `/api/index.js`.
+
+### 1. Deploying via Vercel Dashboard (Recommended)
+1. Push your repository to GitHub: `https://github.com/YaMa04062005/I-Movies`.
+2. Go to [vercel.com](https://vercel.com) and click **"Add New..." > "Project"**.
+3. Import the `I-Movies` repository.
+4. Keep the **Root Directory** as `./` (the root).
+5. Add the following **Environment Variables** in the Vercel project settings:
+   - `MONGODB_URI`: Your MongoDB Atlas connection URI (e.g. `mongodb+srv://user:pass@cluster0.mongodb.net/imovies?retryWrites=true&w=majority`).
+   - `JWT_SECRET`: A secure random secret string (e.g. minimum 32 characters).
+   - `JWT_EXPIRE`: `7d`
+   - `NODE_ENV`: `production`
+6. Click **Deploy**. Vercel will run `npm run build` and provision the frontend static assets and serverless API automatically.
+
+### 2. Deploying via Vercel CLI
+```bash
+npm install -g vercel
+vercel login
+vercel
+# When prompted to deploy to production:
+vercel --prod
+```
+
+---
+
+## Git Push Guide
+
+The local repository is on branch `main` and points to remote `origin`:
+```bash
+git remote -v
+# origin  https://github.com/YaMa04062005/I-Movies.git (fetch)
+# origin  https://github.com/YaMa04062005/I-Movies.git (push)
+```
+
+To push to GitHub:
+```bash
+# Using standard git push (will prompt for GitHub authentication if needed):
+git push -u origin main
+
+# If using a GitHub Personal Access Token (PAT):
+git push https://<YOUR_GITHUB_TOKEN>@github.com/YaMa04062005/I-Movies.git main
+```
